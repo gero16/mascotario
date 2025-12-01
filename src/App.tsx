@@ -92,6 +92,12 @@ function App() {
           <Route path="/contacto" element={<Contact />} />
         </Routes>
       </main>
+      <footer className="footer">
+        <div className="footer-content">
+          <p>Mascotario &copy; 2025. Todos los derechos reservados.</p>
+          <p>Contacto: hola@mascotario.com | Tel: +54 11 1234-5678</p>
+        </div>
+      </footer>
     </>
   )
 }

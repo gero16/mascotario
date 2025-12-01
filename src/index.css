@@ -12,6 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --color-base: #fe8365;
+  position: relative;
 }
 
 a {
