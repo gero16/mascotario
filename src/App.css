@@ -339,8 +339,24 @@ h1 {
   overflow: hidden;
 }
 .product-card:hover {
-  transform: translateY(-7px) scale(1.03);
-  box-shadow: 0 6px 24px #fe836566;
+  transform: translateY(-9px) scale(1.045);
+  box-shadow: 0 8px 32px 0 rgba(254,131,101,0.28);
+}
+
+/* Eliminado ::after para glow externo y border en hover */
+
+.product-card .product-info {
+  backdrop-filter: blur(4px) saturate(140%);
+  background: rgba(0,0,0,0.5);
+}
+
+.product-card .buy-btn .icon-animate {
+  display: inline-block;
+  transition: transform 0.24s cubic-bezier(0.43, 2.1, 0.47, 0.8);
+}
+
+.product-card .buy-btn:hover .icon-animate {
+  transform: scale(1.25) rotate(-18deg);
 }
 .product-image {
   width: 100%;
