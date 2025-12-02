@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useParams } from 'react-router-dom'
 import './App.css'
 import { useState } from 'react'
 import Loader from './Loader'
@@ -67,23 +67,97 @@ function Home() {
 const productos = [
   {
     nombre: 'Pelota anti-estrés',
+    slug: 'pelota-anti-estres',
     descripcion: 'Ideal para juegos y reducir ansiedad en perros.',
+    descripcion_larga: 'La pelota anti-estrés está fabricada con materiales resistentes, suaves y seguros, perfecta para que tu perro libere energía, juegue y mantenga una mente activa. Favorece el bienestar emocional, ayuda a combatir el aburrimiento, y es fácil de lavar. Su textura masajea las encías y promueve hábitos saludables de juego. ¡Una excelente opción para mantener a tu mascota feliz y entretenida durante horas! Ideal para tiradas largas y mordisqueos intensos.',
     precio: '$3.100',
-    img: 'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/mbpyba4kqjt93lhsor26.jpg',
+    imagenes: [
+      'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/ehpransykdsrlalapbdn.jpg',
+      'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/mbpyba4kqjt93lhsor26.jpg',
+      'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/pf4xzqvfopibhtacw5ju.webp'
+    ],
   },
   {
     nombre: 'Rascador doble nivel',
+    slug: 'rascador-doble-nivel',
     descripcion: 'Diversión y comodidad para gatos inquietos.',
+    descripcion_larga: 'Nuestro rascador doble nivel ofrece diversión, ejercicio y descanso para gatos de todas las edades. Incluye dos plataformas a diferentes alturas, material de sisal natural para afilar sus uñas, y una base sólida para máxima estabilidad. Fomenta el instinto natural de rascar y reduce el riesgo de daños en muebles. Su diseño moderno se adapta a cualquier ambiente del hogar. ¡El complemento perfecto para el bienestar y diversión diaria de tu gato! Fácil de armar y limpiar.',
     precio: '$9.600',
-    img: 'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/vyclvmpgewimoraphn7v.jpg',
+    imagenes: [
+      'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/vyclvmpgewimoraphn7v.jpg',
+      'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/vyclvmpgewimoraphn7v.jpg'
+    ],
   },
   {
     nombre: 'Comedero inteligente',
+    slug: 'comedero-inteligente',
     descripcion: 'Dispensación automática, seguro y fácil de limpiar.',
+    descripcion_larga: 'El comedero inteligente te ayuda a cuidar de tu mascota incluso cuando no estás en casa. Dispensador programable, capacidad para varios días y materiales aptos para alimentos. Ofrece porciones regulables, evitando el sobrepeso y promoviendo hábitos saludables. Incluye display digital, sistema anti-atascos y es sencillo de desmontar para su limpieza. ¡La tranquilidad de saber que tu mascota siempre tendrá su comida a tiempo y fresca! Compatible con alimento seco para perros y gatos.',
     precio: '$12.800',
-    img: 'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/av7blshwicxy5id3rs2m.jpg',
+    imagenes: [
+      'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/av7blshwicxy5id3rs2m.jpg',
+      'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/av7blshwicxy5id3rs2m.jpg'
+    ],
   },
 ];
+
+function ProductDetail({ slug }: { slug: string }) {
+  const producto = productos.find(p => p.slug === slug)
+  const [imgIdx, setImgIdx] = useState(0)
+  if (!producto) {
+    return (
+      <section className="store-section">
+        <h1>Producto no encontrado</h1>
+        <Link to="/tienda">Volver a la tienda</Link>
+      </section>
+    )
+  }
+  const total = producto.imagenes.length;
+  const prevImg = () => setImgIdx(i => (i - 1 + total) % total)
+  const nextImg = () => setImgIdx(i => (i + 1) % total)
+  return (
+    <section className="store-section">
+      <h1>{producto.nombre}</h1>
+      <div className="product-detail-container">
+        <div className="product-slider">
+          <img
+            src={producto.imagenes[imgIdx]}
+            alt={`${producto.nombre} foto ${imgIdx+1}`}
+            className="product-slider-img"
+          />
+          {total > 1 && (
+            <>
+              <button
+                onClick={prevImg}
+                className="slider-arrow slider-arrow-left"
+                aria-label="Anterior"
+              >&lt;</button>
+              <button
+                onClick={nextImg}
+                className="slider-arrow slider-arrow-right"
+                aria-label="Siguiente"
+              >&gt;</button>
+            </>
+          )}
+          {total > 1 && (
+            <div className="slider-dots">
+              {producto.imagenes.map((_,idx)=>(
+                <span key={idx} className={"slider-dot" + (idx===imgIdx?" active":"")}>●</span>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="product-detail-info flex-center-center">
+          <p className="desc product-detail-desc">{producto.descripcion}</p>
+          <span className="price product-detail-price">{producto.precio}</span>
+          <p className="product-detail-longdesc">{producto.descripcion_larga}</p>
+          <button className="buy-btn product-detail-buy">Agregar al carrito</button>
+          <Link to="/tienda" className="product-detail-back">← Volver a la tienda</Link>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 function Store() {
   return (
@@ -92,9 +166,11 @@ function Store() {
       <div className="store-products">
         {productos.map((p, i) => (
           <div className="product-card" key={i}>
-            <div className="product-image" style={{ backgroundImage: `url('${p.img}')` }}></div>
+            <div className="product-image" style={{ backgroundImage: `url('${p.imagenes[0]}')` }}></div>
             <div className="product-info">
-              <h2>{p.nombre}</h2>
+              <h2>
+                <Link to={`/tienda/${p.slug}`}>{p.nombre}</Link>
+              </h2>
               <p className="desc">{p.descripcion}</p>
               <span className="price">{p.precio}</span>
               <button className="buy-btn">Agregar al carrito</button>
@@ -174,6 +250,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tienda" element={<Store />} />
+          <Route path="/tienda/:slug" element={<ProductSlugWrapper />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/loader" element={<Loader />} />
         </Routes>
@@ -186,6 +263,12 @@ function App() {
       </footer>
     </>
   )
+}
+
+// Wrapper para mapear params a props del ProductDetail
+function ProductSlugWrapper() {
+  const { slug } = useParams();
+  return <ProductDetail slug={slug || ""} />;
 }
 
 export default App
