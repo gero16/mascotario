@@ -4,6 +4,7 @@ import Store from './Store';
 import ProductDetail from './ProductDetail';
 import Contact from './Contact';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/tienda/:slug" element={<ProductDetail />} />
         <Route path="/contacto" element={<Contact />} />
       </Routes>
+      <Footer />
     </>
   );
 }

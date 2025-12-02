@@ -1,3 +1,4 @@
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { productos } from './productos';
 interface Producto {
@@ -25,9 +26,14 @@ export default function ProductDetail() {
   return (
     <section className="store-section">
       <div className="product-detail-container">
-        <div className="product-detail-image">
-          <img src={producto.imagenes[imgIdx]} alt={producto.nombre} />
-          {/* thumbnails */}
+        {/* Slider de imágenes */}
+        <div className="product-slider">
+          <img
+            src={producto.imagenes[imgIdx]}
+            alt={producto.nombre}
+            className="product-slider-img"
+          />
+          {/* Thumbnails (dots en mobile) */}
           <div className="product-detail-thumbs">
             {producto.imagenes.map((img, idx) => (
               <img
@@ -35,17 +41,18 @@ export default function ProductDetail() {
                 src={img}
                 alt={producto.nombre}
                 onClick={() => setImgIdx(idx)}
+                style={{ cursor: 'pointer', width: 60, margin: 2, border: imgIdx === idx ? '2px solid #fe8365' : '2px solid #eee', borderRadius: '8px', transition: 'border 0.13s' }}
                 className={imgIdx === idx ? 'selected' : ''}
-                style={{ cursor: 'pointer', width: 60, margin: 2, border: imgIdx === idx ? '2px solid #fe8365' : '2px solid #eee' }}
               />
             ))}
           </div>
         </div>
+        {/* Info del producto */}
         <div className="product-detail-info">
           <h2>{producto.nombre}</h2>
-          <span className="price">{producto.precio}</span>
-          <p>{producto.descripcion_larga}</p>
-          <button className="buy-btn">Agregar al carrito</button>
+          <span className="product-detail-price">{producto.precio}</span>
+          <div className="product-detail-longdesc">{producto.descripcion_larga}</div>
+          <button className="buy-btn product-detail-buy">Agregar al carrito</button>
           <Link to="/tienda" className="product-detail-back">← Volver a la tienda</Link>
         </div>
       </div>
