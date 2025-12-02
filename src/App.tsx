@@ -1,5 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
+import { useState } from 'react'
 
 const LOGO_URL = 'https://res.cloudinary.com/geronicola/image/upload/v1764624562/mascotario/macgscolzsr8wbmxvtqt.png'
 
@@ -52,7 +53,7 @@ function Home() {
         <div className="instagram-posts">
           <div className="insta-img" style={{backgroundImage: "url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=300&q=80')"}}></div>
           <div className="insta-img" style={{backgroundImage: "url('https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=300&q=80')"}}></div>
-          <div className="insta-img" style={{backgroundImage: "url('https://images.unsplash.com/photo-1518715308788-94df7821df52?auto=format&fit=crop&w=300&q=80')"}}></div>
+          <div className="insta-img" style={{backgroundImage: "url('https://res.cloudinary.com/geronicola/image/upload/v1764633668/mascotario/x6qsevtjkjd8c3jpuycq.jpg')"}}></div>
         </div>
         <p className="instagram-cta">
           Síguenos en <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">@mascotario</a> para ver más
@@ -105,7 +106,52 @@ function Store() {
 }
 
 function Contact() {
-  return <section><h1>Contacto</h1><p>Contáctanos a través de este formulario.</p></section>;
+  const [form, setForm] = useState({ nombre: '', email: '', mensaje: '' });
+  const [enviado, setEnviado] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setEnviado(true);
+    setTimeout(() => setEnviado(false), 3000);
+    setForm({ nombre: '', email: '', mensaje: '' });
+  };
+
+  return (
+    <section className="contact-section">
+      <h1>Contacto</h1>
+      <p>¿Tienes dudas, consultas o sugerencias? ¡Escríbenos!</p>
+      <form className="contact-form" onSubmit={handleSubmit} autoComplete="off">
+        <input
+          type="text"
+          placeholder="Nombre"
+          name="nombre"
+          value={form.nombre}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
+        <textarea
+          placeholder="Mensaje"
+          name="mensaje"
+          value={form.mensaje}
+          onChange={handleChange}
+          required
+        />
+        <button type="submit" className="submit-btn">Enviar mensaje</button>
+        {enviado && <div className="sent-alert">¡Mensaje enviado correctamente!</div>}
+      </form>
+    </section>
+  );
 }
 
 function App() {
