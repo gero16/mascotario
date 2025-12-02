@@ -6,7 +6,7 @@ export const productos = [
     descripcion_larga: 'La pelota anti-estrés está fabricada con materiales resistentes, suaves y seguros, perfecta para que tu perro libere energía, juegue y mantenga una mente activa. Favorece el bienestar emocional, ayuda a combatir el aburrimiento, y es fácil de lavar. Su textura masajea las encías y promueve hábitos saludables de juego. ¡Una excelente opción para mantener a tu mascota feliz y entretenida durante horas! Ideal para tiradas largas y mordisqueos intensos.',
     precio: '$3.100',
     imagenes: [
-      'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/ehpransykdsrlalapbdn.jpg',
+      'https://res.cloudinary.com/geronicola/image/upload/v1764697039/mascotario/gnin6elsc9qlujuemdru.png',
       'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/mbpyba4kqjt93lhsor26.jpg',
       'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/pf4xzqvfopibhtacw5ju.webp'
     ]
@@ -19,6 +19,7 @@ export const productos = [
     precio: '$9.600',
     imagenes: [
       'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/vyclvmpgewimoraphn7v.jpg',
+      "https://res.cloudinary.com/geronicola/image/upload/v1764696352/mascotario/pwcxiy3azjz7cyc6p1ss.png",
       'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/gkwyackfq5ha50jeuxds.png'
     ]
   },
