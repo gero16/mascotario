@@ -62,8 +62,46 @@ function Home() {
   )
 }
 
+const productos = [
+  {
+    nombre: 'Pelota anti-estrés',
+    descripcion: 'Ideal para juegos y reducir ansiedad en perros.',
+    precio: '$3.100',
+    img: 'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/mbpyba4kqjt93lhsor26.jpg',
+  },
+  {
+    nombre: 'Rascador doble nivel',
+    descripcion: 'Diversión y comodidad para gatos inquietos.',
+    precio: '$9.600',
+    img: 'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/vyclvmpgewimoraphn7v.jpg',
+  },
+  {
+    nombre: 'Comedero inteligente',
+    descripcion: 'Dispensación automática, seguro y fácil de limpiar.',
+    precio: '$12.800',
+    img: 'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/av7blshwicxy5id3rs2m.jpg',
+  },
+];
+
 function Store() {
-  return <section><h1>Tienda</h1><p>Próximamente: productos para tus mascotas.</p></section>;
+  return (
+    <section className="store-section">
+      <h1>Nuestros productos</h1>
+      <div className="store-products">
+        {productos.map((p, i) => (
+          <div className="product-card" key={i}>
+            <div className="product-image" style={{ backgroundImage: `url('${p.img}')` }}></div>
+            <div className="product-info">
+              <h2>{p.nombre}</h2>
+              <p className="desc">{p.descripcion}</p>
+              <span className="price">{p.precio}</span>
+              <button className="buy-btn">Agregar al carrito</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 function Contact() {
