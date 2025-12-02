@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { productos } from './productos';
+import { useCart } from './CartContext';
 interface Producto {
   nombre: string;
   slug: string;
@@ -14,6 +15,7 @@ export default function ProductDetail() {
   const { slug } = useParams();
   const producto: Producto | undefined = productos.find(p => p.slug === slug);
   const [imgIdx, setImgIdx] = React.useState(0);
+  const { addToCart } = useCart();
 
   if (!producto) {
     return (
@@ -52,7 +54,12 @@ export default function ProductDetail() {
           <h2>{producto.nombre}</h2>
           <span className="product-detail-price">{producto.precio}</span>
           <div className="product-detail-longdesc">{producto.descripcion_larga}</div>
-          <button className="buy-btn product-detail-buy">Agregar al carrito</button>
+          <button onClick={() => addToCart({
+            id: producto.slug,
+            name: producto.nombre,
+            price: Number(producto.precio.replace(/[^0-9.-]+/g, "")),
+            image: producto.imagenes[imgIdx]
+          })} className="buy-btn product-detail-buy">Agregar al carrito</button>
           <Link to="/tienda" className="product-detail-back">← Volver a la tienda</Link>
         </div>
       </div>

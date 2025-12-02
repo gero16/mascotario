@@ -6,7 +6,11 @@ interface Producto {
   precio: string;
   imagenes: string[];
 }
-export default function ProductCard({ producto }: { producto: Producto }) {
+interface ProductCardProps {
+  producto: Producto;
+  onAddToCart?: () => void;
+}
+export default function ProductCard({ producto, onAddToCart }: ProductCardProps) {
   const navigate = useNavigate();
   return (
     <div
@@ -27,7 +31,9 @@ export default function ProductCard({ producto }: { producto: Producto }) {
         </h2>
         <p className="desc">{producto.descripcion}</p>
         <span className="price">{producto.precio}</span>
-        <button className="buy-btn">Agregar al carrito</button>
+        <button className="buy-btn" onClick={e => { e.stopPropagation(); onAddToCart && onAddToCart(); }}>
+          Agregar al carrito
+        </button>
       </div>
     </div>
   );
