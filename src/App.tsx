@@ -1,4 +1,4 @@
-import { Routes, Route, Link, useParams } from 'react-router-dom'
+import { Routes, Route, Link, useParams, useNavigate } from 'react-router-dom'
 import './App.css'
 import { useState } from 'react'
 import Loader from './Loader'
@@ -66,8 +66,8 @@ function Home() {
 
 const productos = [
   {
-    nombre: 'Pelota anti-estrés',
-    slug: 'pelota-anti-estres',
+    nombre: 'Quita Pelusa',
+    slug: 'quita-pelusa',
     descripcion: 'Ideal para juegos y reducir ansiedad en perros.',
     descripcion_larga: 'La pelota anti-estrés está fabricada con materiales resistentes, suaves y seguros, perfecta para que tu perro libere energía, juegue y mantenga una mente activa. Favorece el bienestar emocional, ayuda a combatir el aburrimiento, y es fácil de lavar. Su textura masajea las encías y promueve hábitos saludables de juego. ¡Una excelente opción para mantener a tu mascota feliz y entretenida durante horas! Ideal para tiradas largas y mordisqueos intensos.',
     precio: '$3.100',
@@ -78,8 +78,8 @@ const productos = [
     ],
   },
   {
-    nombre: 'Rascador doble nivel',
-    slug: 'rascador-doble-nivel',
+    nombre: 'Botella Portátil',
+    slug: 'botella-portatil',
     descripcion: 'Diversión y comodidad para gatos inquietos.',
     descripcion_larga: 'Nuestro rascador doble nivel ofrece diversión, ejercicio y descanso para gatos de todas las edades. Incluye dos plataformas a diferentes alturas, material de sisal natural para afilar sus uñas, y una base sólida para máxima estabilidad. Fomenta el instinto natural de rascar y reduce el riesgo de daños en muebles. Su diseño moderno se adapta a cualquier ambiente del hogar. ¡El complemento perfecto para el bienestar y diversión diaria de tu gato! Fácil de armar y limpiar.',
     precio: '$9.600',
@@ -89,8 +89,8 @@ const productos = [
     ],
   },
   {
-    nombre: 'Comedero inteligente',
-    slug: 'comedero-inteligente',
+    nombre: 'Botella Go Pro',
+    slug: 'botella-go-pro',
     descripcion: 'Dispensación automática, seguro y fácil de limpiar.',
     descripcion_larga: 'El comedero inteligente te ayuda a cuidar de tu mascota incluso cuando no estás en casa. Dispensador programable, capacidad para varios días y materiales aptos para alimentos. Ofrece porciones regulables, evitando el sobrepeso y promoviendo hábitos saludables. Incluye display digital, sistema anti-atascos y es sencillo de desmontar para su limpieza. ¡La tranquilidad de saber que tu mascota siempre tendrá su comida a tiempo y fresca! Compatible con alimento seco para perros y gatos.',
     precio: '$12.800',
@@ -161,16 +161,26 @@ function ProductDetail({ slug }: { slug: string }) {
 }
 
 function Store() {
+  const navigate = useNavigate();
   return (
     <section className="store-section">
       <h1>Nuestros productos</h1>
       <div className="store-products">
         {productos.map((p, i) => (
-          <div className="product-card" key={i}>
+          <div
+            className="product-card"
+            key={i}
+            style={{ position: 'relative', cursor: 'pointer' }}
+            onClick={e => {
+              // Si el click fue en el botón, no navegar
+              if ((e.target as HTMLElement).closest('button')) return;
+              navigate(`/tienda/${p.slug}`);
+            }}
+          >
             <div className="product-image" style={{ backgroundImage: `url('${p.imagenes[0]}')` }}></div>
             <div className="product-info">
               <h2>
-                <Link to={`/tienda/${p.slug}`}>{p.nombre}</Link>
+                <span style={{textDecoration:'none',color:'#fff'}}>{p.nombre}</span>
               </h2>
               <p className="desc">{p.descripcion}</p>
               <span className="price">{p.precio}</span>

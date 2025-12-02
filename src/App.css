@@ -324,22 +324,26 @@ h1 {
   background: #fff;
   border-radius: 1.1rem;
   box-shadow: 0 2px 12px #fe836533;
-  max-width: 290px;
-  min-width: 225px;
+  max-width: 350px;
+  min-width: 320px;
   padding: 1.2rem 1rem 1.1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: transform 0.15s, box-shadow 0.15s;
   position: relative;
+  overflow: hidden;
 }
 .product-card:hover {
   transform: translateY(-7px) scale(1.03);
   box-shadow: 0 6px 24px #fe836566;
 }
 .product-image {
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  aspect-ratio: 1/1;
+  height: auto;
+  min-height: 250px;
+  position: relative;
   background-size: cover;
   background-position: center;
   border-radius: 0.8rem;
@@ -347,9 +351,55 @@ h1 {
   margin-bottom: 1.1rem;
 }
 .product-info {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s;
+  z-index: 2;
+  border-radius: 0.8rem;
+  padding: 1.1rem 1rem 1.3rem;
+  /* Nueva parte para scroll en textos largos */
+  max-height: 100%;
+  overflow-y: auto;
+  /* Opción para no mostrar siempre el scroll */
+  scrollbar-width: thin;
+  scrollbar-color: #fe8365 #3336;
+}
+.product-info::-webkit-scrollbar {
+  width: 5px;
+  background: #3336;
+}
+.product-info::-webkit-scrollbar-thumb {
+  background: #fe8365;
+  border-radius: 3px;
+}
+
+.product-info h2 a {
+  color: white;
+}
+.product-card:hover .product-info {
+  opacity: 1;
+  pointer-events: all;
+}
+.product-card .product-info h2,
+.product-card .product-info .desc,
+.product-card .product-info .price,
+.product-card .product-info .buy-btn {
+  color: #fff;
+  text-shadow: 0 2px 8px #0007;
+}
+.product-card .product-info .buy-btn {
+  margin-top: 0.6em;
+  background: #fe8365cc;
+  border: 2px solid #fff8;
+  width: 180px;
 }
 .product-info h2 {
   color: #fe8365;
