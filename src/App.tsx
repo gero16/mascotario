@@ -85,7 +85,7 @@ const productos = [
     precio: '$9.600',
     imagenes: [
       'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/vyclvmpgewimoraphn7v.jpg',
-      'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/vyclvmpgewimoraphn7v.jpg'
+      "https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/gkwyackfq5ha50jeuxds.png"
     ],
   },
   {
@@ -96,7 +96,8 @@ const productos = [
     precio: '$12.800',
     imagenes: [
       'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/av7blshwicxy5id3rs2m.jpg',
-      'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/av7blshwicxy5id3rs2m.jpg'
+      "https://res.cloudinary.com/geronicola/image/upload/v1764689697/mascotario/gdi600j3z28l1y12kxvl.jpg",
+      "https://res.cloudinary.com/geronicola/image/upload/v1764689709/mascotario/iamkvrj4f64wdzsgdtir.jpg"
     ],
   },
 ];
