@@ -32,6 +32,7 @@ export const productos = [
     precio: '$1200',
     imagenes: [
       'https://res.cloudinary.com/geronicola/image/upload/v1764715633/mascotario/yakwzrbuqpalswfmzbzv.png',
+      "https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/av7blshwicxy5id3rs2m.jpg",
       'https://res.cloudinary.com/geronicola/image/upload/v1764689697/mascotario/gdi600j3z28l1y12kxvl.jpg',
       'https://res.cloudinary.com/geronicola/image/upload/v1764689709/mascotario/iamkvrj4f64wdzsgdtir.jpg'
     ]
