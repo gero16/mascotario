@@ -18,7 +18,8 @@ export const productos = [
     descripcion_larga: 'Nuestro rascador doble nivel ofrece diversión, ejercicio y descanso para gatos de todas las edades. Incluye dos plataformas a diferentes alturas, material de sisal natural para afilar sus uñas, y una base sólida para máxima estabilidad. Fomenta el instinto natural de rascar y reduce el riesgo de daños en muebles. Su diseño moderno se adapta a cualquier ambiente del hogar. ¡El complemento perfecto para el bienestar y diversión diaria de tu gato! Fácil de armar y limpiar.',
     precio: '$800',
     imagenes: [
-      'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/vyclvmpgewimoraphn7v.jpg',
+      "https://res.cloudinary.com/geronicola/image/upload/v1764717915/mascotario/ykcx1bkwsi7fnz5dds9w.png"
+,      'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/vyclvmpgewimoraphn7v.jpg',
       "https://res.cloudinary.com/geronicola/image/upload/v1764696352/mascotario/pwcxiy3azjz7cyc6p1ss.png",
       'https://res.cloudinary.com/geronicola/image/upload/v1764633478/mascotario/gkwyackfq5ha50jeuxds.png'
     ]
@@ -30,7 +31,7 @@ export const productos = [
     descripcion_larga: 'El comedero inteligente te ayuda a cuidar de tu mascota incluso cuando no estás en casa. Dispensador programable, capacidad para varios días y materiales aptos para alimentos. Ofrece porciones regulables, evitando el sobrepeso y promoviendo hábitos saludables. Incluye display digital, sistema anti-atascos y es sencillo de desmontar para su limpieza. ¡La tranquilidad de saber que tu mascota siempre tendrá su comida a tiempo y fresca! Compatible con alimento seco para perros y gatos.',
     precio: '$1200',
     imagenes: [
-      'https://res.cloudinary.com/geronicola/image/upload/v1764632822/mascotario/av7blshwicxy5id3rs2m.jpg',
+      'https://res.cloudinary.com/geronicola/image/upload/v1764715633/mascotario/yakwzrbuqpalswfmzbzv.png',
       'https://res.cloudinary.com/geronicola/image/upload/v1764689697/mascotario/gdi600j3z28l1y12kxvl.jpg',
       'https://res.cloudinary.com/geronicola/image/upload/v1764689709/mascotario/iamkvrj4f64wdzsgdtir.jpg'
     ]

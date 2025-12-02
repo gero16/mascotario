@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './Home.css';
 export default function Home() {
   return (
     <section className="landing">
@@ -47,9 +48,9 @@ export default function Home() {
       <section className="instagram-section">
         <h2>Últimas publicaciones en Instagram</h2>
         <div className="instagram-posts">
-          <div className="insta-img" style={{backgroundImage: "url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=300&q=80')"}}></div>
-          <div className="insta-img" style={{backgroundImage: "url('https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=300&q=80')"}}></div>
-          <div className="insta-img" style={{backgroundImage: "url('https://res.cloudinary.com/geronicola/image/upload/v1764633668/mascotario/x6qsevtjkjd8c3jpuycq.jpg')"}}></div>
+          <div className="insta-img insta-img-one"></div>
+          <div className="insta-img insta-img-two"></div>
+          <div className="insta-img insta-img-three"></div>
         </div>
         <p className="instagram-cta">
           Síguenos en <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">@mascotario</a> para ver más

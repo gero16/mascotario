@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useCart } from './CartContext';
 import CartModal from './CartModal';
+import './Navbar.css';
 
 const LOGO_URL = 'https://res.cloudinary.com/geronicola/image/upload/v1764624562/mascotario/macgscolzsr8wbmxvtqt.png';
 
@@ -21,12 +22,12 @@ export default function Navbar() {
           <Link to="/tienda">Tienda</Link>
           <Link to="/contacto">Contacto</Link>
           <button 
-            style={{marginLeft:16,cursor:'pointer',background:'none',border:'none',position:'relative'}} 
+            className="navbar-cart-btn"
             onClick={()=>setModalOpen(true)} 
             aria-label="Abrir carrito"
           >
-            <span role="img" aria-label="carrito" style={{fontSize:24}}>🛒</span>
-            {itemsCount > 0 && <span style={{position:'absolute',top:-6,right:-6,background:'#ff5722',color:'#fff',borderRadius:'50%',padding:'0 6px',fontSize:12}}>{itemsCount}</span>}
+            <span role="img" aria-label="carrito" className="navbar-cart-emoji">🛒</span>
+            {itemsCount > 0 && <span className="navbar-cart-badge">{itemsCount}</span>}
           </button>
         </div>
       </div>

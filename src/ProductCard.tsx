@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import './ProductCard.css';
 interface Producto {
   nombre: string;
   slug: string;
@@ -14,20 +15,19 @@ export default function ProductCard({ producto, onAddToCart }: ProductCardProps)
   const navigate = useNavigate();
   return (
     <div
-      className="product-card"
-      style={{ position: 'relative', cursor: 'pointer' }}
+      className="product-card card-pointer"
       onClick={e => {
         if ((e.target as HTMLElement).closest('button')) return;
         navigate(`/tienda/${producto.slug}`);
       }}
     >
       <div
-        className="product-image"
+        className="product-image product-image-bg"
         style={{ backgroundImage: `url('${producto.imagenes[0]}')` }}
       ></div>
       <div className="product-info">
         <h2>
-          <span style={{ textDecoration: 'none', color: '#fff' }}>{producto.nombre}</span>
+          <span className="product-title-white">{producto.nombre}</span>
         </h2>
         <p className="desc">{producto.descripcion}</p>
         <span className="price">{producto.precio}</span>

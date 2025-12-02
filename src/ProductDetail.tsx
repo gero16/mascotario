@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { productos } from './productos';
 import { useCart } from './CartContext';
+import './ProductDetail.css';
 interface Producto {
   nombre: string;
   slug: string;
@@ -43,8 +44,7 @@ export default function ProductDetail() {
                 src={img}
                 alt={producto.nombre}
                 onClick={() => setImgIdx(idx)}
-                style={{ cursor: 'pointer', width: 60, margin: 2, border: imgIdx === idx ? '2px solid #fe8365' : '2px solid #eee', borderRadius: '8px', transition: 'border 0.13s' }}
-                className={imgIdx === idx ? 'selected' : ''}
+                className={`product-detail-thumb${imgIdx === idx ? ' selected' : ''}`}
               />
             ))}
           </div>

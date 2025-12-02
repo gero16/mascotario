@@ -1,0 +1,11 @@
+.card-pointer {
+  position: relative;
+  cursor: pointer;
+}
+.product-image-bg {
+  /* El backgroundImage seguirá siendo dinámico desde React */
+}
+.product-title-white {
+  text-decoration: none;
+  color: #fff;
+}

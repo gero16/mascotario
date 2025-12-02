@@ -1,0 +1,11 @@
+.product-detail-thumb {
+  cursor: pointer;
+  width: 60px;
+  margin: 2px;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  transition: border 0.13s;
+}
+.product-detail-thumb.selected {
+  border: 2px solid #fe8365;
+}
