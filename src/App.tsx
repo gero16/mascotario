@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 import { useState } from 'react'
+import Loader from './Loader'
 
 const LOGO_URL = 'https://res.cloudinary.com/geronicola/image/upload/v1764624562/mascotario/macgscolzsr8wbmxvtqt.png'
 
@@ -174,6 +175,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/tienda" element={<Store />} />
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/loader" element={<Loader />} />
         </Routes>
       </main>
       <footer className="footer">
