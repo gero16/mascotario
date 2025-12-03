@@ -2,6 +2,8 @@ import './Checkout.css';
 import { useCart } from './CartContext';
 import { useState } from 'react';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
 export default function Checkout() {
   const { items } = useCart();
   const [loading, setLoading] = useState(false);
@@ -19,7 +21,7 @@ export default function Checkout() {
         quantity: item.quantity,
         unit_price: item.price,
       }));
-      const response = await fetch('http://localhost:3000/pago/preferencia', {
+      const response = await fetch(`${BACKEND_URL}/pago/preferencia`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productos })
