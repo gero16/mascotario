@@ -15,6 +15,11 @@
   --color-acento: #3ed4c3; /* acento turquesa */
   --color-secundario: #64baa2; /* verde agua secundario */
   --color-dark: #27293d; /* gris azulado para contraste fuerte */
+  --color-soft-peach: #ffe8df; /* fondo suave */
+  --color-highlight: #f3b664; /* detalles dorados */
+  --color-muted-rose: #ffb099; /* acentos cálidos */
+  --color-cool-slate: #344150; /* textos destacados */
+  --color-cream: #fff3ec; /* secciones amplias */
   position: relative;
 }
 
