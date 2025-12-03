@@ -206,14 +206,14 @@ h1 {
 
 .landing-header h1 {
   font-size: 3rem;
-  /*color: var(--color-base);*/ 
-  
+  color: var(--color-base);
+  /*
   color: var(--color-base);
   background: linear-gradient(90deg, var(--color-base) 0%, var(--color-highlight) 90%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
+  */
   letter-spacing: 2px;
   font-weight: 900;
 }
@@ -227,7 +227,12 @@ h1 {
 
 .cta-btn {
   display: inline-block;
-  background: #fe8365;
+  background: linear-gradient(90deg, var(--color-base) 0%, var(--color-highlight) 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 22px rgba(254, 131, 101, 0.35);
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0 6px 12px #fe836522;
   color: #fff;
   font-size: 1.1rem;
   padding: 0.85em 2em;
@@ -294,6 +299,10 @@ h1 {
 .reviews-section h2 {
   font-size: 2rem;
   color: var(--color-base);
+  background: linear-gradient(90deg, var(--color-base) 0%, var(--color-highlight) 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 1.3rem;
   font-weight: 800;
   letter-spacing: 0.5px;
