@@ -1,4 +1,3 @@
-import React from 'react';
 import './Checkout.css';
 import { useCart } from './CartContext';
 import { useState } from 'react';
