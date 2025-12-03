@@ -20,6 +20,7 @@
   --color-muted-rose: #ffb099; /* acentos cálidos */
   --color-cool-slate: #344150; /* textos destacados */
   --color-cream: #fff3ec; /* secciones amplias */
+  --color-teal: #2e716a; /* contraste frío principal */
   position: relative;
 }
 
