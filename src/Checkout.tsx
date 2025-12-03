@@ -1,12 +1,40 @@
 import React from 'react';
 import './Checkout.css';
 import { useCart } from './CartContext';
+import { useState } from 'react';
 
 export default function Checkout() {
   const { items } = useCart();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string|null>(null);
 
   // Calcula el total visualmente
   const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  const pagarConMercadoPago = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const productos = items.map(item => ({
+        title: item.name,
+        quantity: item.quantity,
+        unit_price: item.price,
+      }));
+      const response = await fetch('http://localhost:3000/pago/preferencia', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productos })
+      });
+      if (!response.ok) throw new Error("No se pudo generar la preferencia");
+      const data = await response.json();
+      if (!data.init_point) throw new Error("No se obtuvo link de pago");
+      window.location.href = data.init_point;
+    } catch (e:any) {
+      setError(e.message || "Error procesando el pago");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="checkout-padding">
@@ -57,6 +85,17 @@ export default function Checkout() {
                 <span>Total:</span>
                 <span>${total.toFixed(2)}</span>
               </div>
+              <button
+                className="checkout-mercadopago-btn"
+                onClick={pagarConMercadoPago}
+                disabled={loading || items.length === 0}
+                style={{marginTop:20,padding:'10px 20px',fontSize:18,fontWeight:'bold',background:'#009ee3',color:'white',border:'none',borderRadius:8,cursor:'pointer'}}
+              >
+                {loading ? "Redirigiendo..." : "Pagar con Mercado Pago"}
+              </button>
+              {error && (
+                <div style={{color:'red',marginTop:10}}>{error}</div>
+              )}
             </div>
           )}
         </section>
