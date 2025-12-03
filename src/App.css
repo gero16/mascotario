@@ -83,6 +83,7 @@ h1,h2,h3,h4,p, button {
 .navbar-links {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 .navbar-links a {
   color: #fff;
