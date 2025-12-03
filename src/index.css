@@ -11,8 +11,15 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --color-base: #fe8365;
+  --color-base: #fe8365; /* coral principal */
+  --color-acento: #3ed4c3; /* acento turquesa */
+  --color-secundario: #64baa2; /* verde agua secundario */
+  --color-dark: #27293d; /* gris azulado para contraste fuerte */
   position: relative;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 a {
