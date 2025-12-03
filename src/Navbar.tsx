@@ -9,7 +9,7 @@ const LOGO_URL = 'https://res.cloudinary.com/geronicola/image/upload/v1764624562
 export default function Navbar() {
   const [modalOpen, setModalOpen] = useState(false);
   const { items } = useCart();
-  const itemsCount = items.reduce((a, b) => a + b.quantity, 0);
+  const itemsCount = items.reduce((a: number, b) => a + b.quantity, 0);
 
   return (
     <nav className="navbar">

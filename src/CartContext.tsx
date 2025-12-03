@@ -1,4 +1,4 @@
-import createContext, { useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
 export interface CartItem {
@@ -9,7 +9,7 @@ export interface CartItem {
   image?: string;
 }
 
-interface CartContextType {
+export interface CartContextType {
   items: CartItem[];
   addToCart: (item: Omit<CartItem, 'quantity'>) => void;
   removeFromCart: (id: string) => void;

@@ -8,7 +8,7 @@ export default function Checkout() {
   const [error, setError] = useState<string|null>(null);
 
   // Calcula el total visualmente
-  const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const total = items.reduce((acc: number, item) => acc + item.price * item.quantity, 0);
 
   const pagarConMercadoPago = async () => {
     setLoading(true);

@@ -1,5 +1,6 @@
 import { useCart } from './CartContext';
 import { useNavigate } from 'react-router-dom';
+import type { CartItem, CartContextType } from './CartContext';
 
 interface CartModalProps {
   open: boolean;
@@ -7,12 +8,12 @@ interface CartModalProps {
 }
 
 export default function CartModal({ open, onClose }: CartModalProps) {
-  const { items, removeFromCart, updateQuantity, clearCart } = useCart();
+  const { items, removeFromCart, updateQuantity, clearCart } = useCart() as CartContextType;
   const navigate = useNavigate();
 
   if (!open) return null;
 
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = items.reduce((sum: number, item: CartItem) => sum + item.price * item.quantity, 0);
 
   return (
     <div className="modal-overlay-custom">
@@ -24,7 +25,7 @@ export default function CartModal({ open, onClose }: CartModalProps) {
         ) : (
           <>
             <ul className="modal-cart-list">
-              {items.map(item => (
+              {items.map((item: CartItem) => (
                 <li key={item.id} className="modal-cart-item">
                   <div className="modal-cart-item-row">
                     {item.image && <img src={item.image} alt="" className="modal-cart-item-img" />}
