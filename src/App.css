@@ -121,25 +121,6 @@ h1,h2,h3,h4,p, button, figure {
   }
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background: #fef6f2;
-  color: black;
-  padding: 1rem 0.5rem;
-  text-align: center;
-  font-size: 1rem;
-  z-index: 15;
-  box-shadow: 0 -4px 12px #fe836533;
-}
-.footer-content {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
 main {
   margin-top: 60px;   /* alto estimado del navbar */
   margin-bottom: 85px; /* alto estimado del footer */
