@@ -968,7 +968,6 @@ h1 {
 .slider-dots {
   display: flex;
   justify-content: center;
-  margin-top: 7px;
   width: 100%;
   gap: 2px;
 }
@@ -1307,15 +1306,15 @@ h1 {
   position: absolute;
   z-index: 7;
   left: 50%;
-  bottom: 15px;
+  bottom: 55px;
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
 }
 .dot {
   display: block;
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #fff;
   border: 2px solid #fd843e;
