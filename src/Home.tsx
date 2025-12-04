@@ -6,7 +6,7 @@ const portadaImages = [
   {
     url: 'https://res.cloudinary.com/geronicola/image/upload/v1764855092/mascotario/o8anxb8nlgevqpdojnue.jpg',
     alt: 'Pareja paseando a sus mascotas con productos de Mascotario (portada 1)',
-    position: 'center 78%',
+    position: 'center 88%',
     tag: 'Active lifestyle',
     highlight: 'BOTELLA',
     headline: 'DOBLE',
@@ -19,6 +19,15 @@ const portadaImages = [
     tag: 'Colección training',
     highlight: 'PELO',
     headline: 'CERO',
+    subline: 'Libertad total y estimulación segura para cada juego.'
+  },
+  {
+    url: 'https://res.cloudinary.com/geronicola/image/upload/v1764855090/mascotario/rfczl5wqv7arbirvy7ri.jpg',
+    alt: 'Perro y gato con productos de Mascotario (portada 2)',
+    position: 'center 70%',
+    tag: 'Colección training',
+    highlight: 'AGUA',
+    headline: 'LISTA',
     subline: 'Libertad total y estimulación segura para cada juego.'
   },
 ];
