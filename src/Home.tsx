@@ -8,8 +8,8 @@ const portadaImages = [
     alt: 'Pareja paseando a sus mascotas con productos de Mascotario (portada 1)',
     position: 'center 78%',
     tag: 'Active lifestyle',
-    highlight: 'URBAN',
-    headline: 'ADVENTURE',
+    highlight: 'BOTELLA',
+    headline: 'DOBLE',
     subline: 'Arneses ergonómicos y outfits listos para cada paseo.'
   },
   {
@@ -17,8 +17,8 @@ const portadaImages = [
     alt: 'Perro y gato con productos de Mascotario (portada 2)',
     position: 'center 74%',
     tag: 'Colección training',
-    highlight: 'LONG',
-    headline: 'LEASH',
+    highlight: 'PELO',
+    headline: 'CERO',
     subline: 'Libertad total y estimulación segura para cada juego.'
   },
 ];

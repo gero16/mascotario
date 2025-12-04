@@ -820,6 +820,7 @@ h1 {
   display: flex;
   justify-content: center;
   margin-top: 7px;
+  width: 100%;
   gap: 2px;
 }
 .slider-dot {
@@ -1208,54 +1209,63 @@ h1 {
   transform: translate(-50%, 0);
   z-index: 5;
   color: #fff;
-  padding: 1.1rem 2.2rem;
-  border-radius: 1rem;
-  background: linear-gradient(180deg, rgba(9, 19, 32, 0.94), rgba(9, 19, 32, 0.7));
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+  padding: 0.85rem 1.4rem;
+  border-radius: 0.9rem;
+  background: linear-gradient(180deg, rgba(9, 19, 32, 0.92), rgba(9, 19, 32, 0.64));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
   pointer-events: none;
-  width: min(420px, 85vw);
+  width: min(340px, 80vw);
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-wrap: balance;
 }
 .slider-eyebrow {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: #d5d5d5;
   line-height: 1;
   margin-bottom: 0.25rem;
 }
 .slider-caption h2 {
   margin: 0;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: 900;
-  letter-spacing: 0.12em;
+  font-size: x-large;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  line-height: 1.15;
+  word-break: break-word;
 }
 .caption-strong {
-  color: #ff223e;
   margin-right: 0.5rem;
+  color: #ff7322;
+  /*
+  background: linear-gradient(90deg, var(--color-base) 0%, var(--color-highlight) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  */
 }
 .caption-subline {
   margin: 0;
   margin-top: 0.4rem;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-size: small;
   color: #f2f3f5;
   opacity: 0.92;
 }
 @media (max-width: 600px) {
   .slider-caption {
     bottom: 6%;
-    padding: 0.9rem 1.4rem;
+    padding: 0.75rem 1rem;
     border-radius: 0.8rem;
     width: 88vw;
   }
   .slider-eyebrow {
-    font-size: 0.6rem;
-    letter-spacing: 2px;
+    font-size: 0.55rem;
+    letter-spacing: 1.6px;
   }
   .slider-caption h2 {
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
   }
 }
