@@ -4,7 +4,7 @@ import { useCart } from './CartContext';
 import CartModal from './CartModal';
 import './Navbar.css';
 
-const LOGO_URL = 'https://res.cloudinary.com/geronicola/image/upload/v1764624562/mascotario/macgscolzsr8wbmxvtqt.png';
+const LOGO_URL = 'https://res.cloudinary.com/geronicola/image/upload/v1764862490/mascotario/s4hodexxgwckorkdu75f.png';
 
 export default function Navbar() {
   const [modalOpen, setModalOpen] = useState(false);

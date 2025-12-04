@@ -70,18 +70,52 @@ export default function Home() {
       </div>
       <section className="landing">
         <div className="landing-hero">
-          <header className="landing-header">
-            <h1>Mascotario</h1>
-            <p className="slogan">Tu tienda ideal para consentir a tus mascotas</p>
-            <Link to="/tienda" className="cta-btn">Explorar Tienda</Link>
-          </header>
-          <figure className="landing-cover">
-            <img
-              src="https://res.cloudinary.com/geronicola/image/upload/v1764855122/mascotario/ez4bayx6frsvsoa2zsrl.jpg"
-              alt="Dúo de mascotas jugando con accesorios de Mascotario"
-              loading="lazy"
-            />
-          </figure>
+          <div className="hero-copy">
+            <p className="hero-eyebrow">Novedades portátiles Mascotario</p>
+            <header className="landing-header">
+              <h1>Hidratación inteligente y ropa sin pelos</h1>
+              <p className="slogan">
+                Botellas 2 en 1 con cuenco integrado y quita pelusas reutilizables para paseos limpios y sin derrames.
+              </p>
+            </header>
+            <div className="hero-pill-row">
+              <span>Botella HydraDuo</span>
+              <span>Quita Pelusa FurClean</span>
+              <span>Snacks + agua en un solo giro</span>
+            </div>
+            <ul className="hero-list">
+              <li>Cuenco integrado para servir agua al instante.</li>
+              <li>Compartimento hermético para snacks o alimento.</li>
+              <li>Removedor reutilizable que deja tus outfits impecables.</li>
+            </ul>
+            <div className="hero-cta-row">
+              <Link to="/tienda" className="cta-btn">Ver catálogo</Link>
+              <Link to="/contacto" className="hero-secondary">Solicitar combo</Link>
+            </div>
+          </div>
+          <div className="hero-showcase">
+            <figure className="landing-cover">
+              <img
+                src="https://res.cloudinary.com/geronicola/image/upload/v1764855122/mascotario/ez4bayx6frsvsoa2zsrl.jpg"
+                alt="Dúo de mascotas jugando con accesorios de Mascotario"
+                loading="lazy"
+              />
+            </figure>
+            <article className="hero-product-card bottle-card">
+              <span className="hero-chip">HydraDuo</span>
+              <h3>Botella 2 en 1</h3>
+              <p>550 ml de agua + tarro plegable y espacio para snacks.</p>
+              <div className="hero-stats">
+                <span>Libre de BPA</span>
+                <span>Click to serve</span>
+              </div>
+            </article>
+            <article className="hero-product-card lint-card">
+              <span className="hero-chip">FurClean</span>
+              <h3>Quita Pelusa</h3>
+              <p>Silicona reutilizable que elimina pelos al instante.</p>
+            </article>
+          </div>
         </div>
         <div className="landing-features">
           <div className="feature-card">
