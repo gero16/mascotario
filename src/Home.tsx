@@ -131,7 +131,36 @@ export default function Home() {
             <p>Te ayudamos en cada paso, antes y después de tu compra.</p>
           </div>
         </div>
-
+      </section>
+      <section className="spotlight-section">
+        <figure className="spotlight-image">
+          <img
+            src="https://res.cloudinary.com/geronicola/image/upload/v1764859316/mascotario/slvx0iyi6wpg0qqtdht8.png"
+            alt="Botella portátil HydraDuo con cuenco integrado"
+            loading="lazy"
+          />
+        </figure>
+        <div className="spotlight-overlay">
+          <div className="spotlight-copy">
+            <p className="spotlight-eyebrow">Botella HydraDuo</p>
+            <h2>Lleva agua y snacks en un solo giro</h2>
+            <p className="spotlight-description">
+              Nuestro dispensador portátil integra depósito de 550 ml, cuenco desplegable
+              y contenedor hermético para alimento. Hidrata y premia a tu peludo sin cargar accesorios extras.
+            </p>
+            <ul className="spotlight-list">
+              <li>Válvula antiderrames y bloqueo de doble clic.</li>
+              <li>Libre de BPA y fácil de desmontar para limpieza.</li>
+              <li>Incluye correa para colgar en mochila o cinturón.</li>
+            </ul>
+            <div className="spotlight-cta">
+              <Link to="/tienda" className="cta-btn">Comprar HydraDuo</Link>
+              <Link to="/contacto" className="hero-secondary">Quiero más info</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="landing landing-secondary">
         {/* Sección de reseñas */}
         <section className="reviews-section">
           <h2>Opiniones de nuestros clientes</h2>
