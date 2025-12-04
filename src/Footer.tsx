@@ -37,8 +37,6 @@ const mercadoPagoUyMethods = [
   'OCA',
   'Líder',
   'Diners Club',
-  'Visa Débito',
-  'Mastercard Débito',
   'Abitab',
   'Redpagos'
 ];
