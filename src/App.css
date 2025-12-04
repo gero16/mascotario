@@ -414,18 +414,18 @@ h1 {
 
 .hero-product-card h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--color-base);
 }
 
 .hero-product-card p {
   margin: 0;
   color: #4b4b4b;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .hero-chip {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: #ff6d3c;
@@ -435,7 +435,7 @@ h1 {
   display: flex;
   gap: 0.4rem;
   flex-wrap: wrap;
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   color: #1f1f1f;
   font-weight: 600;
 }

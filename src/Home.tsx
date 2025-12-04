@@ -105,10 +105,7 @@ export default function Home() {
               <span className="hero-chip">HydraDuo</span>
               <h3>Botella 2 en 1</h3>
               <p>550 ml de agua + tarro plegable y espacio para snacks.</p>
-              <div className="hero-stats">
-                <span>Libre de BPA</span>
-                <span>Click to serve</span>
-              </div>
+            
             </article>
             <article className="hero-product-card lint-card">
               <span className="hero-chip">FurClean</span>
