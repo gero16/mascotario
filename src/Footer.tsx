@@ -30,7 +30,18 @@ const footerColumns = [
   }
 ];
 
-const paymentBrands = ['Amex', 'Diners', 'Discover', 'JCB', 'Mastercard', 'PayPal', 'Shop Pay', 'VISA'];
+const mercadoPagoUyMethods = [
+  'Saldo Mercado Pago',
+  'Visa',
+  'Mastercard',
+  'OCA',
+  'Líder',
+  'Diners Club',
+  'Visa Débito',
+  'Mastercard Débito',
+  'Abitab',
+  'Redpagos'
+];
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -71,8 +82,8 @@ export default function Footer() {
         <div className="footer-bottom">
           <p>© {year} Mascotario. Todos los derechos reservados.</p>
           <div className="payment-logos">
-            {paymentBrands.map((brand) => (
-              <span key={brand}>{brand}</span>
+            {mercadoPagoUyMethods.map((method) => (
+              <span key={method}>{method}</span>
             ))}
           </div>
         </div>
