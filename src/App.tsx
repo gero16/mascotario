@@ -8,6 +8,7 @@ import Footer from './Footer';
 import './App.css';
 import { CartProvider } from './CartContext';
 import Checkout from './Checkout';
+import ControlPanel from './ControlPanel';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/tienda/:slug" element={<ProductDetail />} />
         <Route path="/contacto" element={<Contact />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/panel" element={<ControlPanel />} />
       </Routes>
       <Footer />
     </CartProvider>

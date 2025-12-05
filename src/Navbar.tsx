@@ -21,6 +21,7 @@ export default function Navbar() {
           <Link to="/">Inicio</Link>
           <Link to="/tienda">Tienda</Link>
           <Link to="/contacto">Contacto</Link>
+          <Link to="/panel">Panel</Link>
           <button 
             className="navbar-cart-btn"
             onClick={()=>setModalOpen(true)} 

@@ -964,23 +964,6 @@ h1 {
   min-height: 92px;
   max-height: 160px;
 }
-.contact-success,
-.contact-error {
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  border-radius: 0.7em;
-  font-weight: 600;
-  box-shadow: 0 2px 8px #fe836533;
-}
-.contact-success {
-  background: #fe8365;
-  color: #fff;
-}
-.contact-error {
-  background: rgba(255, 243, 240, 0.95);
-  color: #c23a2b;
-  border: 1px solid rgba(255, 132, 101, 0.4);
-}
 .submit-btn {
   background: #fe8365;
   color: #fff;
