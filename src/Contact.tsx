@@ -10,6 +10,7 @@ export default function Contact() {
   const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
   const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const fallbackToEmail = import.meta.env.VITE_EMAILJS_TO_EMAIL;
   const isConfigured = Boolean(serviceId && templateId && publicKey);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -29,18 +30,18 @@ export default function Contact() {
     setErrorMsg('');
 
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          user_name: form.nombre,
-          user_email: form.email,
-          message: form.mensaje,
-        },
-        {
-          publicKey,
-        }
-      );
+      const templateParams = {
+        nombre: form.nombre,
+        email: form.email,
+        mensaje: form.mensaje,
+        telefono: 'No proporcionado',
+        asunto: 'Consulta desde Mascotario',
+        to_email: fallbackToEmail,
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, {
+        publicKey,
+      });
       setForm(initialForm);
       setStatus('success');
       setTimeout(() => setStatus('idle'), 4000);

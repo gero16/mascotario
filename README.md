@@ -28,6 +28,9 @@ El formulario de contacto usa [EmailJS](https://www.emailjs.com/) para enviar co
 VITE_EMAILJS_SERVICE_ID=tu_service_id
 VITE_EMAILJS_TEMPLATE_ID=tu_template_id
 VITE_EMAILJS_PUBLIC_KEY=tu_public_key
+VITE_EMAILJS_TO_EMAIL=destino@tudominio.com # opcional, usado como to_email
 ```
+
+La plantilla debe usar las mismas variables que enviamos (`nombre`, `email`, `telefono`, `asunto`, `mensaje`, `to_email`). Ajusta el nombre de los campos en EmailJS si necesitas otros identificadores.
 
 > Recuerda reiniciar `npm run dev` cada vez que modifiques variables `VITE_`. EmailJS expone las peticiones desde el front, así que si necesitas almacenamiento o validaciones adicionales considera reenviar los datos a tu backend.
