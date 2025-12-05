@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
@@ -32,8 +32,70 @@ const portadaImages = [
   },
 ];
 
+const instagramPosts = [
+  {
+    id: 'ig-10',
+    image: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=400&q=80',
+    caption: 'Nuevos sets FurClean listos para la temporada de viajes 🧳🐾',
+    dateLabel: '05 Feb',
+    link: 'https://instagram.com/mascotario'
+  },
+  {
+    id: 'ig-09',
+    image: 'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=400&q=80',
+    caption: 'Kit HydraDuo + snacks para aventuras largas 🚰🍖',
+    dateLabel: '03 Feb',
+    link: 'https://instagram.com/mascotario'
+  },
+  {
+    id: 'ig-08',
+    image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=400&q=80',
+    caption: 'Clientes felices estrenando correas antitirones 💛',
+    dateLabel: '01 Feb',
+    link: 'https://instagram.com/mascotario'
+  },
+  {
+    id: 'ig-07',
+    image: 'https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=400&q=80',
+    caption: 'Recordatorio: lavá tu FurClean cada 10 usos 😉',
+    dateLabel: '30 Ene',
+    link: 'https://instagram.com/mascotario'
+  },
+  {
+    id: 'ig-06',
+    image: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=400&q=80',
+    caption: 'Nuevo color coral para la HydraDuo edición verano 🌺',
+    dateLabel: '28 Ene',
+    link: 'https://instagram.com/mascotario'
+  },
+  {
+    id: 'ig-05',
+    image: 'https://images.unsplash.com/photo-1505628346881-b72b27e84530?auto=format&fit=crop&w=400&q=80',
+    caption: 'Pañuelos reversibles, edición picnic disponible 🧺',
+    dateLabel: '26 Ene',
+    link: 'https://instagram.com/mascotario'
+  },
+  {
+    id: 'ig-04',
+    image: 'https://images.unsplash.com/photo-1477973770766-6228305816df?auto=format&fit=crop&w=400&q=80',
+    caption: 'Test de resistencia en arneses acolchados ✔️',
+    dateLabel: '24 Ene',
+    link: 'https://instagram.com/mascotario'
+  },
+  {
+    id: 'ig-03',
+    image: 'https://images.unsplash.com/photo-1548191265-cc70d3d45ba1?auto=format&fit=crop&w=400&q=80',
+    caption: 'Tips para mantener a tu gato hidratado todo el día 😺',
+    dateLabel: '22 Ene',
+    link: 'https://instagram.com/mascotario'
+  },
+];
+
+const VISIBLE_POSTS = 4;
+
 export default function Home() {
   const [active, setActive] = useState(0);
+  const [postStart, setPostStart] = useState(0);
 
   // Autoslide cada 5s
   useEffect(() => {
@@ -43,6 +105,23 @@ export default function Home() {
 
   const activeSlide = portadaImages[active];
   const objectPos = activeSlide.position || 'center 66%';
+
+  const visiblePosts = useMemo(() => {
+    const count = Math.min(VISIBLE_POSTS, instagramPosts.length);
+    return Array.from({ length: count }).map((_, idx) => {
+      const post = instagramPosts[(postStart + idx) % instagramPosts.length];
+      return { ...post, key: `${post.id}-${idx}` };
+    });
+  }, [postStart]);
+
+  const handleNextPosts = () => {
+    setPostStart(prev => (prev + 1) % instagramPosts.length);
+  };
+
+  const handlePrevPosts = () => {
+    setPostStart(prev => (prev - 1 + instagramPosts.length) % instagramPosts.length);
+  };
+  const canSlidePosts = instagramPosts.length > VISIBLE_POSTS;
 
   return (
     <>
@@ -181,14 +260,60 @@ export default function Home() {
         </section>
         {/* Sección de Instagram */}
         <section className="instagram-section">
-          <h2>Últimas publicaciones en Instagram</h2>
-          <div className="instagram-posts">
-            <div className="insta-img insta-img-one"></div>
-            <div className="insta-img insta-img-two"></div>
-            <div className="insta-img insta-img-three"></div>
+          <div className="instagram-header">
+            <div>
+              <h2>Últimas publicaciones en Instagram</h2>
+              <p>Mostramos siempre las 4 más recientes. Usa el slider para ver aún más.</p>
+            </div>
+            <div className="instagram-controls">
+              <button
+                className="instagram-arrow"
+                onClick={handlePrevPosts}
+                disabled={!canSlidePosts}
+                aria-label="Ver publicaciones anteriores"
+              >
+                ‹
+              </button>
+              <button
+                className="instagram-arrow"
+                onClick={handleNextPosts}
+                disabled={!canSlidePosts}
+                aria-label="Ver publicaciones siguientes"
+              >
+                ›
+              </button>
+            </div>
+          </div>
+          <div className="instagram-slider">
+            {visiblePosts.map(post => (
+              <article key={post.key} className="instagram-card">
+                <div
+                  className="instagram-thumb"
+                  style={{ backgroundImage: `url('${post.image}')` }}
+                  role="img"
+                  aria-label={post.caption}
+                />
+                <div className="instagram-card-body">
+                  <p className="instagram-caption">{post.caption}</p>
+                  <span className="instagram-date">{post.dateLabel}</span>
+                  <a
+                    href={post.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="instagram-link"
+                  >
+                    Ver publicación
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
           <p className="instagram-cta">
-            Síguenos en <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">@mascotario</a> para ver más
+            Síguenos en{' '}
+            <a href="https://instagram.com/mascotario" target="_blank" rel="noopener noreferrer">
+              @mascotario
+            </a>{' '}
+            para ver más
           </p>
         </section>
       </section>

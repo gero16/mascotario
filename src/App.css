@@ -696,27 +696,102 @@ h1 {
 
 .instagram-section {
   margin: 2.5rem 0 1.5rem;
-  text-align: center;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
 }
 .instagram-section h2 {
   color: #fe8365;
   font-size: 1.5rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.3rem;
 }
-.instagram-posts {
+.instagram-header {
   display: flex;
-  gap: 1.2rem;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 0.7rem;
+  gap: 1rem;
 }
-.insta-img {
-  width: 94px;
-  height: 94px;
-  border-radius: 0.6rem;
+.instagram-header p {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+.instagram-controls {
+  display: flex;
+  gap: 0.4rem;
+}
+.instagram-arrow {
+  background: #fff6f3;
+  border: 1px solid rgba(0,0,0,0.1);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #fe8365;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.18s;
+}
+.instagram-arrow:hover:not(:disabled) {
+  background: #fe8365;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.instagram-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.instagram-slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.instagram-card {
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(243, 182, 100, 0.3);
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+}
+.instagram-thumb {
+  width: 100%;
+  padding-top: 100%;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 2px 8px #fe836533, 0 0 0 2px #fff6f3;
+}
+.instagram-card-body {
+  padding: 0.9rem 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.instagram-caption {
+  margin: 0;
+  font-weight: 600;
+  color: #2e2e2e;
+  font-size: 0.95rem;
+}
+.instagram-date {
+  color: #6b7280;
+  font-size: 0.82rem;
+}
+.instagram-link {
+  margin-top: auto;
+  font-weight: 600;
+  color: #fe8365;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.instagram-link:hover {
+  text-decoration: underline;
 }
 .instagram-cta {
   font-size: 0.97rem;
