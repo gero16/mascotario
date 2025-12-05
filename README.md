@@ -1,73 +1,33 @@
-# React + TypeScript + Vite
+# mascotario-front
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend de Mascotario construido con React, TypeScript y Vite.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js 18 o superior
+- npm 9 o superior
 
-## React Compiler
+## Scripts útiles
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `npm install` – instala dependencias.
+- `npm run dev` – inicia el entorno local en `http://localhost:5173`.
+- `npm run build` – genera la build de producción.
 
-## Expanding the ESLint configuration
+## Configuración de EmailJS
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+El formulario de contacto usa [EmailJS](https://www.emailjs.com/) para enviar correos directamente desde el navegador. Antes de ejecutar el proyecto:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Crea una cuenta en EmailJS, conecta tu servicio de correo y crea una plantilla.
+2. Copia los identificadores que entrega la plataforma:
+   - `SERVICE_ID`
+   - `TEMPLATE_ID`
+   - `PUBLIC_KEY` (antes llamado *User ID*)
+3. En la raíz de `mascotario-front` crea un archivo `.env` con:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+VITE_EMAILJS_SERVICE_ID=tu_service_id
+VITE_EMAILJS_TEMPLATE_ID=tu_template_id
+VITE_EMAILJS_PUBLIC_KEY=tu_public_key
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> Recuerda reiniciar `npm run dev` cada vez que modifiques variables `VITE_`. EmailJS expone las peticiones desde el front, así que si necesitas almacenamiento o validaciones adicionales considera reenviar los datos a tu backend.
