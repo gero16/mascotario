@@ -31,7 +31,15 @@ export default function ProductCard({ producto, onAddToCart }: ProductCardProps)
         </h2>
         <p className="desc">{producto.descripcion}</p>
         <span className="price">{producto.precio}</span>
-        <button className="buy-btn" onClick={e => { e.stopPropagation(); onAddToCart && onAddToCart(); }}>
+        <button
+          className="buy-btn"
+          onClick={e => {
+            e.stopPropagation();
+            if (onAddToCart) {
+              onAddToCart();
+            }
+          }}
+        >
           Agregar al carrito
         </button>
       </div>

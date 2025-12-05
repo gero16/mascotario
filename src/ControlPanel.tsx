@@ -8,15 +8,13 @@ type NotificationType = 'pago' | 'stock' | 'mensaje' | 'envio';
 
 interface Order {
   id: string;
-  numero: string;
   cliente: string;
-  clienteId: string;
-  ciudad: string;
-  fecha: string;
+  ciudad?: string;
+  fecha?: string;
   estado: OrderStatus;
   total: number;
-  articulos: number;
-  canal: string;
+  articulos?: number;
+  canal?: string;
 }
 
 interface User {
@@ -46,9 +44,7 @@ type NotificationFilter = NotificationType | 'todas';
 const FALLBACK_ORDERS: Order[] = [
   {
     id: 'ORD-10423',
-    numero: '10423',
     cliente: 'María Fernanda',
-    clienteId: 'CLI-210',
     ciudad: 'CABA',
     fecha: '2025-02-05T13:42:00Z',
     estado: 'pendiente',
@@ -58,9 +54,7 @@ const FALLBACK_ORDERS: Order[] = [
   },
   {
     id: 'ORD-10418',
-    numero: '10418',
     cliente: 'Rodolfo Gómez',
-    clienteId: 'CLI-118',
     ciudad: 'Rosario',
     fecha: '2025-02-04T18:25:00Z',
     estado: 'pagada',
@@ -70,9 +64,7 @@ const FALLBACK_ORDERS: Order[] = [
   },
   {
     id: 'ORD-10403',
-    numero: '10403',
     cliente: 'Carolina Ortiz',
-    clienteId: 'CLI-095',
     ciudad: 'Mendoza',
     fecha: '2025-02-03T16:05:00Z',
     estado: 'preparando',
@@ -82,9 +74,7 @@ const FALLBACK_ORDERS: Order[] = [
   },
   {
     id: 'ORD-10388',
-    numero: '10388',
     cliente: 'Natalia Funes',
-    clienteId: 'CLI-090',
     ciudad: 'Córdoba',
     fecha: '2025-02-02T15:36:00Z',
     estado: 'enviada',
@@ -94,9 +84,7 @@ const FALLBACK_ORDERS: Order[] = [
   },
   {
     id: 'ORD-10380',
-    numero: '10380',
     cliente: 'Juan Martín',
-    clienteId: 'CLI-066',
     ciudad: 'Mar del Plata',
     fecha: '2025-02-01T13:20:00Z',
     estado: 'entregada',
@@ -106,9 +94,7 @@ const FALLBACK_ORDERS: Order[] = [
   },
   {
     id: 'ORD-10372',
-    numero: '10372',
     cliente: 'Lucía Pereyra',
-    clienteId: 'CLI-058',
     ciudad: 'La Plata',
     fecha: '2025-01-31T11:18:00Z',
     estado: 'cancelada',
@@ -258,6 +244,71 @@ const safeFormatDateTime = (value: string | Date) => {
   return Number.isNaN(date.valueOf()) ? '—' : dateTimeFormatter.format(date);
 };
 
+const getOrderDateValue = (order: Order) => {
+  if (!order.fecha) return 0;
+  const timestamp = new Date(order.fecha).getTime();
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+};
+
+const normalizeOrders = (data: unknown): Order[] => {
+  if (!Array.isArray(data)) return [];
+
+  return data.map((raw) => {
+    const order = raw as Record<string, unknown>;
+    const itemsCount = Array.isArray(order.items)
+      ? order.items.reduce((acc: number, item: Record<string, unknown>) => {
+          const quantity = Number((item as { quantity?: unknown })?.quantity ?? 0);
+          return acc + (Number.isFinite(quantity) ? quantity : 0);
+        }, 0)
+      : undefined;
+
+    const fecha =
+      typeof order.fecha === 'string'
+        ? order.fecha
+        : typeof order.createdAt === 'string'
+          ? order.createdAt
+          : typeof order.updatedAt === 'string'
+            ? order.updatedAt
+            : undefined;
+
+    const idSource =
+      order._id ??
+      order.id ??
+      order.numero ??
+      order.codigo ??
+      (typeof order.cliente === 'string'
+        ? `orden-${order.cliente}-${Math.random().toString(36).slice(2, 7)}`
+        : `orden-${Math.random().toString(36).slice(2, 9)}`);
+
+    return {
+      id: String(idSource),
+      cliente:
+        typeof order.cliente === 'string'
+          ? order.cliente
+          : typeof order.customerName === 'string'
+            ? order.customerName
+            : 'Cliente',
+      ciudad:
+        typeof order.ciudad === 'string'
+          ? order.ciudad
+          : typeof order.city === 'string'
+            ? order.city
+            : undefined,
+      fecha,
+      estado: (order.estado ?? 'pendiente') as OrderStatus,
+      total: Number(order.total) || 0,
+      articulos:
+        typeof order.articulos === 'number' ? order.articulos : itemsCount ?? undefined,
+      canal:
+        typeof order.canal === 'string'
+          ? order.canal
+          : typeof order.channel === 'string'
+            ? order.channel
+            : 'Web',
+    };
+  });
+};
+
 export default function ControlPanel() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -290,7 +341,7 @@ export default function ControlPanel() {
       setError(null);
       try {
         const [apiOrders, apiUsers, apiNotifications] = await Promise.all([
-          request<Order>('/ordenes'),
+          request<Record<string, unknown>>('/ordenes'),
           request<User>('/usuarios'),
           request<Notification>('/notificaciones'),
         ]);
@@ -302,7 +353,7 @@ export default function ControlPanel() {
         const usedFallback =
           !apiOrders?.length || !apiUsers?.length || !apiNotifications?.length;
 
-        setOrders(apiOrders?.length ? apiOrders : FALLBACK_ORDERS);
+        setOrders(apiOrders?.length ? normalizeOrders(apiOrders) : FALLBACK_ORDERS);
         setUsers(apiUsers?.length ? apiUsers : FALLBACK_USERS);
         setNotifications(apiNotifications?.length ? apiNotifications : FALLBACK_NOTIFICATIONS);
 
@@ -332,7 +383,7 @@ export default function ControlPanel() {
 
   const filteredOrders = useMemo(() => {
     const sorted = [...orders].sort(
-      (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime(),
+      (a, b) => getOrderDateValue(b) - getOrderDateValue(a),
     );
     if (orderFilter === 'todas') {
       return sorted;
@@ -352,7 +403,7 @@ export default function ControlPanel() {
     const abiertas = orders.filter(
       order => order.estado !== 'entregada' && order.estado !== 'cancelada',
     ).length;
-    const clientes = new Set(orders.map(order => order.clienteId ?? order.cliente)).size;
+    const clientes = new Set(orders.map(order => order.cliente)).size;
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     const nuevosUsuarios = users.filter(user => {
@@ -483,7 +534,7 @@ export default function ControlPanel() {
                       <p className="table-strong">{order.cliente}</p>
                       <span className="table-muted">{order.ciudad}</span>
                     </td>
-                    <td>{safeFormatDate(order.fecha)}</td>
+                    <td>{safeFormatDate(order.fecha ?? '')}</td>
                     <td>
                       <span className={`status-pill ${STATUS_INFO[order.estado].tone}`}>
                         {STATUS_INFO[order.estado].label}
@@ -491,8 +542,10 @@ export default function ControlPanel() {
                     </td>
                     <td>{formatCurrency(order.total)}</td>
                     <td>
-                      <span className="table-strong">{order.canal}</span>
-                      <span className="table-muted">{order.articulos} ítems</span>
+                      <span className="table-strong">{order.canal ?? 'Web'}</span>
+                      <span className="table-muted">
+                        {order.articulos ?? '—'} ítems
+                      </span>
                     </td>
                   </tr>
                 ))}

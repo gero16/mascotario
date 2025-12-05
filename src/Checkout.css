@@ -36,12 +36,17 @@
   font-weight: 600;
   margin-bottom: 4px;
 }
-.checkout-form input {
+.checkout-form input,
+.checkout-form textarea {
   width: 100%;
   padding: 8px;
   border-radius: 6px;
   border: 1px solid #ddd;
   outline: none;
+}
+.checkout-form textarea {
+  resize: vertical;
+  min-height: 72px;
 }
 
 .checkout-summary ul {
