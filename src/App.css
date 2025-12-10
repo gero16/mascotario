@@ -48,9 +48,10 @@ h1,h2,h3,h4,p, button, figure {
   left: 0;
   right: 0;
   width: 100%;
-  /* background: #fe8365; */
-  
+   background: #fe8365; 
+  /*
   background: linear-gradient(90deg, var(--color-base) 0%, var(--color-highlight) 100%);
+  */
   color: #fff;
   border: none;
   box-shadow: 0 8px 22px rgba(254, 131, 101, 0.35);
